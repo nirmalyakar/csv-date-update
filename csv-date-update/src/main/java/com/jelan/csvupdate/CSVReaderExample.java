@@ -35,8 +35,6 @@ public class CSVReaderExample {
             processCSVWithThisOrder(thingsToProcess);
         } catch (IOException e) {
             e.printStackTrace();
-            
-            
         }
 
 
