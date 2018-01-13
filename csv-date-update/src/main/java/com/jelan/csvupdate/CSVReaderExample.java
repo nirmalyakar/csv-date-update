@@ -15,7 +15,7 @@ public class CSVReaderExample {
     public static void main(String[] args) {
 
         String csvFile = "C:\\Users\\Nirmalya\\Desktop\\DBAdminRequirement\\config.csv";
-        Map<String, List<String>> thingsToProcess=new HashedMap();
+        Map<String, List<String>> thingsToProcess=new HashedMap();  
         CSVReader reader = null;
         try {
             reader = new CSVReader(new FileReader(csvFile),',','\'',1 );
@@ -35,6 +35,8 @@ public class CSVReaderExample {
             processCSVWithThisOrder(thingsToProcess);
         } catch (IOException e) {
             e.printStackTrace();
+            
+            
         }
 
 
