@@ -1,0 +1,3 @@
+Exceptions/Assumptions-
+The csv should have a heading in the first row.
+No heading should repeat in a csv file.

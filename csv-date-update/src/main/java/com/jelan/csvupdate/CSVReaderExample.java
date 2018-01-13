@@ -1,6 +1,7 @@
 package com.jelan.csvupdate;
 
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.Map;
 import org.apache.commons.collections.map.HashedMap;
 
 import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
 
 public class CSVReaderExample {
 	public CSVReaderExample(String workinglocation) {
@@ -23,20 +25,22 @@ public class CSVReaderExample {
 			CSVReader csvReader;
 			try {
 				csvReader=new CSVReader(new FileReader(currentCsvFileToProcess));
-				String[] heading=csvReader.readNext();
+				List<String[]> csvBody=csvReader.readAll();
+				String[] heading=csvBody.get(0);//Expecting first line as heading
 				Map<String, Integer> columnNameToIndexMap=createColumnNameToIndexMapFormTheseHeadings(heading);
-				String[] line;
-				while((line=csvReader.readNext())!=null){
-					for(int i=0;i<entry.getValue().size();i++){
-						System.out.println("---"+entry.getValue().get(i));
+				for(int i=1;i<csvBody.size();i++){
+					for (int columnNameCounter = 0; columnNameCounter < entry.getValue().size(); columnNameCounter++) {
+						//System.out.println(csvBody.get(i)[columnNameToIndexMap.get("File 2 Field4")]);
+						csvBody.get(i)[columnNameToIndexMap.get(entry.getValue().get(columnNameCounter))]="changedText";
 					}
 				}
+				csvReader.close();
+				CSVWriter csvWriter=new CSVWriter(new FileWriter(currentCsvFileToProcess));
+				csvWriter.writeAll(csvBody);
+				csvWriter.flush();
+				csvWriter.close();
 			} catch (IOException e) {
 				e.printStackTrace();
-			}
-			System.out.println(entry.getKey());
-			for(int i=0;i<entry.getValue().size();i++){
-				System.out.println("---"+entry.getValue().get(i));
 			}
 		}
 		
@@ -55,7 +59,7 @@ public class CSVReaderExample {
     	}catch (Exception e) {
     		e.printStackTrace();
 		}
-        String csvFile = "C:\\Users\\Nirmalya\\Desktop\\DBAdminRequirement\\config.csv";
+        String csvFile = csvReaderExample.WORKINGLOCATION+"\\config.csv";
         Map<String, List<String>> thingsToProcess=new HashedMap();  
         CSVReader reader = null;
         try {
