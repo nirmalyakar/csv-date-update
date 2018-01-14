@@ -1,0 +1,14 @@
+File Name,Column Name,Field Index,Data type,Update required
+File 1,File 1 Field1,3,Date,
+File 2,File 2 Field3,4,Date,yes
+File 2,File 2 Field4,3,Date,yes
+File 2,File 2 Field5,12,Date,yes
+File 2,File 2 Field6,23,Date,yes
+File 2,File 2 Field7,32,Date,
+File 3,File 3 Field1,23,Date,
+File 3,File 3 Field2,232,Date,
+File 3,File 3 Field3,23,Date,
+File 4,File 4 Field1,23,Date,
+File 4,File 4Field2,23,Date,
+File 4,File 4 Field3,23,Date,
+File 4,File 4 Field4,23,Date,
